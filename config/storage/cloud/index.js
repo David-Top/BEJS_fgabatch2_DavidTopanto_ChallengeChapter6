@@ -1,24 +1,49 @@
 const multer = require('multer');
 
-function cloud(allowedTypes) {
-	const storage = multer.memoryStorage();
+const PIC = {
+	profile: multer({
+		storage: multer.memoryStorage(),
+		fileFilter: (req, file, callback) => {
+			const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
 
-	const cloudUpload = multer({
-		storage: storage,
-		limits: {
-			fileSize: 2 * 1024 * 1024 // 2 MB
-		},
-		fileFilter: function (req, file, cb) {
-			if (!allowedTypes.includes(file.mimetype)) {
-				return cb(new Error('File type is not supported'))
+			if (allowedTypes.includes(file.mimetype)) {
+				callback(null, true);
+			}else{
+				const err = new Error(
+					`${allowedTypes.join(', ')} type only`
+				);
+				callback(false, err);
 			}
-			cb(null, true)
+		},
+		limits: {
+			fileSize: 2 * 1024 * 1024 //2mb
+		},
+		onError: (err, next) => {
+			next(err);
 		}
-	});
+	}),
 
-	return cloudUpload;
+	post: multer({
+		storage: multer.memoryStorage(),
+		fileFilter: (req, file, callback) => {
+			const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
+
+			if (allowedTypes.includes(file.mimetype)) {
+				callback(null, true);
+			}else{
+				const err = new Error(
+					`${allowedTypes.join(', ')} type only`
+				);
+				callback(false, err);
+			}
+		},
+		limits: {
+			fileSize: 5 * 1024 * 1024 //2mb
+		},
+		onError: (err, next) => {
+			next(err);
+		}
+	})
 }
 
-module.exports = {
-	cloud
-};
+module.exports = PIC;
