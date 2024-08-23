@@ -5,10 +5,11 @@ An art gallery application that allows users to upload images of their artwork u
 https://binar-challenge-ch6-production.up.railway.app/api/v1
 
 # Endpoint
-○ Upload images along with titles and descriptions.
-○ View a list of uploaded images along with related information.
-○ View image details along with related information.
-○ Delete images.
-○ Edit the titles and descriptions of uploaded images.
+- Upload images along with titles and descriptions.
+- View a list of uploaded images along with related information.
+- View image details along with related information.
+- Delete images.
+- Edit the titles and descriptions of uploaded images.
 
 # ERD
+![Uploading erd-ch6.PNG…]()
