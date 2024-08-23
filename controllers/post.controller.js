@@ -24,7 +24,7 @@ async function index(req, res) {
     }
 }
 
-async function create(req, res) {
+async function createPost(req, res) {
     try {
         const result = await POSTS_MODEL.create(req);
 
@@ -141,7 +141,7 @@ async function deletePostById(req, res) {
 
 module.exports = {
     index,
-    create,
+    createPost,
     postById,
     updatePostById,
     deletePostById

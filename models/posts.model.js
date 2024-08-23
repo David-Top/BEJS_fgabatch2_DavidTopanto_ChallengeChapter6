@@ -3,28 +3,28 @@ const imageKitConfig = require("../config/lib/imagekit");
 
 const POSTS = {
     create: async (req) => {
-        const picture = req.file;
-        if (!picture) {
+        const pic = req.file;
+        if (!pic) {
             throw new Error("Please upload the Image");            
         }
 
-        console.log(picture);
+        // console.log(pic);
         try {            
             const { title, description, userId } = req.body;
 
-            const isTitleExist = await prisma.posts.findUnique({
-                where: {
-                    title: title
-                }
-            })
+            // const isTitleExist = await prisma.posts.findUnique({
+            //     where: {
+            //         title: title
+            //     }
+            // })
 
-            if (isTitleExist) {
-                throw new Error("Please enter another title, title already exist");                
-            }
+            // if (isTitleExist) {
+            //     throw new Error("Please enter another title, title already exist");                
+            // }
 
             const uploadPic = await imageKitConfig.upload({
-                fileName: req.file.originalname,
-                file: req.file.buffer,
+                fileName: pic.originalname,
+                file: pic.buffer,
                 folder: "/ch6-assets/pic"
             })
 
@@ -40,7 +40,8 @@ const POSTS = {
                     pic: true,
                     title: true,
                     description: true,
-                    userId: true
+                    userId: true,
+                    createdAt: true
                 }
             })
 

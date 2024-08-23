@@ -3,16 +3,16 @@ const multer = require('multer');
 const PIC = {
 	profile: multer({
 		storage: multer.memoryStorage(),
-		fileFilter: (req, file, callback) => {
+		fileFilter: (req, file, cb) => {
 			const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
 
 			if (allowedTypes.includes(file.mimetype)) {
-				callback(null, true);
+				cb(null, true);
 			}else{
 				const err = new Error(
 					`${allowedTypes.join(', ')} type only`
 				);
-				callback(false, err);
+				cb(false, err);
 			}
 		},
 		limits: {
@@ -25,16 +25,16 @@ const PIC = {
 
 	post: multer({
 		storage: multer.memoryStorage(),
-		fileFilter: (req, file, callback) => {
+		fileFilter: (req, file, cb) => {
 			const allowedTypes = ['image/png', 'image/jpg', 'image/jpeg'];
 
 			if (allowedTypes.includes(file.mimetype)) {
-				callback(null, true);
+				cb(null, true);
 			}else{
 				const err = new Error(
 					`${allowedTypes.join(', ')} type only`
 				);
-				callback(false, err);
+				cb(false, err);
 			}
 		},
 		limits: {

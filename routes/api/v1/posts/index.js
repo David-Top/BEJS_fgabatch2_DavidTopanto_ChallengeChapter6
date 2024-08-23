@@ -6,7 +6,7 @@ const PIC = require('../../../../config/storage/cloud');
 //Endpoint posts
 router.get('/', POSTS_CONTROLLER.index);
 
-router.post('/create', PIC.post.single('file'), POSTS_CONTROLLER.create);
+router.post('/create', PIC.post.single('pic'), POSTS_CONTROLLER.createPost);
 
 router.get('/:id', POSTS_CONTROLLER.postById);
 
