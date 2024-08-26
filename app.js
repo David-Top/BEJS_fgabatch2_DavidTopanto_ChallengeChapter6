@@ -1,4 +1,6 @@
+require('./config/lib/instrument.js')
 const express = require('express');
+const Sentry = require('@sentry/node');
 const app = express();
 const PORT = 5500;
 
@@ -27,5 +29,7 @@ prisma.$connect((err) => {
 app.listen(PORT, () => {
     console.log(`Listening on port http://localhost:${PORT}/api/v1/`);
 })
+
+Sentry.setupExpressErrorHandler(app);
 
 module.exports = app;
